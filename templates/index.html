@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='cat.ico') }}" type="image/x-icon">
+    <title>Image Example</title>
+    <style>
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .subsection.partner-project {
+            text-align: left;
+            width: 100%;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .subsection.partner-project ul {
+            list-style-position: inside;
+            padding-left: 0;
+            margin: 0;
+        }
+        .subsection.partner-project li {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            padding: 20px;
+        }
+        img.center {
+            display: block;
+            margin: 0 auto;
+            width: 800px;  /* Increased from 500px */
+            max-width: 100%;  /* Ensures responsiveness */
+            height: auto;  /* Maintains aspect ratio */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;  /* Center all content in container */
+        }
+        .container img {
+            width: 100%;
+            max-width: none;
+        }
+        .link {
+            margin: 30px auto;
+            text-align: center;
+        }
+        .link a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        h1 {
+            color: white; /* Change the color of h1 to white */
+        }
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+        ul {
+            margin: 10px 0;
+            text-align: left; /* Ensure the list items are left-aligned */
+        }
+        li {
+            margin: 8px 0;
+        }
+        img.center {
+            display: block;
+            margin: 0 auto;
+        }
+        /* Borrowed CSS for the navigation menu */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar ul li {
+            float: left;
+        }
+        .navbar ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar ul li a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('enterprise_prebuilt_applications') }}">Services</a></li>
+            <li><a href="#contact">About Us</a></li>
+        </ul>
+    </nav>
+
+    <h1>Enable AI in Public Services and Industry Scaling</h1>
+    <div class="container">
+        <h2 class="text-center">Building a Promised Land</h2>
+        <img src="{{ url_for('static', filename='images/Designer.jpeg') }}" 
+            alt="AI Enhanced Image" 
+            width="666" 
+            class="center">
+        <p class="text-center">Enabling AI adoption across government and industry sectors through scalable solutions and best practices.</p>
+        <div class="link">
+            <a href="{{ url_for('enterprise_prebuilt_applications') }}">Learn More About Our Project</a>
+        </div>
+        <div class="content-wrapper">
+                <ul>
+                    <li>AI-powered automation for government operations</li>
+                    <li>Smart cities infrastructure through IoT and AI integration</li>
+                    <li>Predictive analytics for resource allocation and management</li>
+                    <li>Scalable AI solutions for large-scale industrial operations</li>
+                    <li>Enhanced public safety through AI-driven surveillance and monitoring</li>
+                    <li>AI for improving healthcare delivery and public welfare</li>
+                    <li>Cost-effective and sustainable AI technologies for various industries</li>
+                </ul>
+        </div>
+        <div class="link">
+            <a href="{{ url_for('vote') }}">Vote for our directions</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='cat2.ico') }}" type="image/x-icon">
+    <title>Project Description - AI-Driven Language Translation and Accessibility Solutions for Pyralume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 8px 0;
+        }
+        img.center {
+            display: block;
+            margin: 0 auto;
+        }
+        /* Borrowed CSS for the navigation menu */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar ul li {
+            float: left;
+        }
+        .navbar ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar ul li a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Borrowed navigation menu -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('enterprise_prebuilt_applications') }}">Services</a></li>
+            <li><a href="https://romitgorwani2000.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog" target="_blank">Project Manage</a></li>
+        </ul>
+    </nav>
+
+<a href="https://pyralume.com/">
+    <img src="{{ url_for('static', filename='images/pyralume.svg') }}" 
+    alt="AI Enhanced Image" 
+    width="400" 
+    class="center">
+</a>
+
+<div class="container">
+    <h1>AI-Driven Language Translation and Accessibility Solutions for Pyralume</h1>
+
+    <h2>Project Overview</h2>
+    <p>This project aims to develop AI-based language translation features for Pyralume, enhancing accessibility and global reach. The tools will include real-time closed captioning, automated translation of movie subtitles, and multilingual support for text across the platform. These features will make Pyralume’s content accessible to a diverse, international audience, aligning with its mission of fostering global storytelling.</p>
+
+    <h3>Objectives</h3>
+    <ul>
+        <li><strong>Closed Captioning & Subtitling:</strong> Implement AI-driven real-time closed captioning for live streams and videos. Automate subtitle generation for uploaded films using speech-to-text AI.</li>
+        <li><strong>Language Translation:</strong> Enable AI translation of subtitles into multiple languages. Support multilingual text translation across Pyralume’s platform (e.g., movie descriptions, filmmaker bios, community chats).</li>
+        <li><strong>Global Accessibility:</strong> Ensure seamless user experiences for non-English speakers, promoting inclusivity and global engagement.</li>
+    </ul>
+
+    <h3>Scope of Work</h3>
+    <ul>
+        <li><strong>Research & Analysis:</strong> Assess open-source translation and speech-to-text tools (e.g., Google Cloud Translation API, Hugging Face models, OpenAI Whisper). Analyze the linguistic diversity of Pyralume’s audience to prioritize supported languages.</li>
+        <li><strong>Design & Prototyping:</strong> Design workflows for integrating AI-based translation and captioning into the Pyralume platform. Create user interface mockups for subtitle settings and multilingual navigation.</li>
+        <li><strong>Development:</strong> Develop and integrate closed captioning systems using AI speech-to-text models. Implement automated translation pipelines for subtitles and platform text.</li>
+        <li><strong>Testing & Refinement:</strong> Test translation accuracy, timing, and user readability. Gather feedback from a multilingual focus group to refine features.</li>
+        <li><strong>Deployment:</strong> Launch language translation tools on Pyralume with multilingual support for a pilot group. Provide ongoing support and performance monitoring.</li>
+    </ul>
+
+    <h3>Deliverables</h3>
+    <ul>
+        <li><strong>Closed Captioning System:</strong> AI-powered real-time captioning for live and pre-recorded videos.</li>
+        <li><strong>Subtitle Translation:</strong> Automated translation of movie subtitles into multiple languages with a customizable interface for user selection.</li>
+        <li><strong>Platform Text Translation:</strong> Multilingual support for all textual content, including descriptions, profiles, and community interactions.</li>
+        <li><strong>Customizable User Settings:</strong> Options for users to choose preferred languages for subtitles, captions, and platform text.</li>
+        <li><strong>Documentation:</strong> Comprehensive guides for using and maintaining the translation tools.</li>
+    </ul>
+
+    <h3>Team Duties</h3>
+    <ul>
+        <li><strong>AI Development:</strong> Develop speech-to-text models and translation algorithms.</li>
+        <li><strong>Linguistic Analysis:</strong> Ensure translation accuracy and cultural appropriateness.</li>
+        <li><strong>UI/UX Designing:</strong> Design user-friendly interfaces for language settings.</li>
+        <li><strong>Project Management:</strong> Coordinate milestones and ensure alignment with Pyralume’s goals.</li>
+    </ul>
+
+    <h3>Resources Required</h3>
+    <ul>
+        <li><strong>Technical Resources:</strong> Access to Pyralume’s database for subtitle integration. Open-source or third-party APIs for speech-to-text and translation.</li>
+        <li><strong>Linguistic Resources:</strong> Collaboration with language experts for validation.</li>
+        <li><strong>Testing Environment:</strong> Access to Pyralume’s platform or a development sandbox for testing.</li>
+    </ul>
+
+    <h3>Success Metrics</h3>
+    <ul>
+        <li><strong>Translation Accuracy:</strong> High accuracy in both captioning and subtitle translations across supported languages.</li>
+        <li><strong>Accessibility Adoption:</strong> Increased engagement from non-English speaking users.</li>
+        <li><strong>Performance & Usability:</strong> Seamless integration of language tools with minimal lag or errors.</li>
+        <li><strong>Scalability:</strong> Ability to support additional languages as Pyralume’s global audience grows.</li>
+    </ul>
+
+    <h3>Next Steps</h3>
+    <ul>
+        <li>Assemble the project team and define individual responsibilities.</li>
+        <li>Finalize the scope and list of priority languages for initial deployment.</li>
+        <li>Begin researching and testing speech-to-text and translation models.</li>
+    </ul>
+
+</div>
+<p style="text-align: center;">
+    <a href="https://pyralume.com/">Visit Pyralume</a>
+</p>
+</body>
+</html>
