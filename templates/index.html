@@ -202,7 +202,12 @@
                         },
                         body: JSON.stringify({ message: message })
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
                     .then(data => {
                         const botMessageElement = document.createElement('div');
                         botMessageElement.textContent = data.response;

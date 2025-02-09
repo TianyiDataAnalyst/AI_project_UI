@@ -4,6 +4,7 @@ import sqlite3
 from dotenv import load_dotenv
 import os
 import logging
+import torch
 
 load_dotenv()
 
@@ -12,9 +13,23 @@ chatbot_bp = Blueprint('chatbot', __name__)
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 
-# Load GPT-2 model and tokenizer
-model = GPT2LMHeadModel.from_pretrained("gpt2")
-tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+# Define the local directory to save the model and tokenizer
+local_model_dir = "./local_model"
+
+# Check if the model and tokenizer are already downloaded
+model_files_exist = os.path.exists(os.path.join(local_model_dir, "pytorch_model.bin"))
+tokenizer_files_exist = os.path.exists(os.path.join(local_model_dir, "tokenizer.json"))
+
+if not model_files_exist or not tokenizer_files_exist:
+    logging.error("GPT-2 model and tokenizer not found in the local directory. Please run download_model.py to download them.")
+    raise FileNotFoundError("GPT-2 model and tokenizer not found in the local directory.")
+else:
+    logging.debug("Loading GPT-2 model and tokenizer from local directory...")
+    model = GPT2LMHeadModel.from_pretrained(local_model_dir, local_files_only=True)
+    tokenizer = GPT2Tokenizer.from_pretrained(local_model_dir, local_files_only=True)
+
+# Set the model in evaluation mode
+model.eval()
 
 def get_fact_answer(question):
     connection = sqlite3.connect('facts.db')
@@ -29,15 +44,20 @@ def get_fact_answer(question):
 
 @chatbot_bp.route('/chatbot', methods=['POST'])
 def chatbot_route():
-    data = request.get_json()
-    message = data.get('message')
-    logging.debug(f"Received message: {message}")
-    if message:
-        response = get_chatbot_response(message)
-        logging.debug(f"Generated response: {response}")
-        return {'response': response}
-    logging.error("No message received")
-    return {'response': 'No message received'}
+    try:
+        data = request.get_json()
+        logging.debug(f"Received data: {data}")
+        message = data.get('message')
+        logging.debug(f"Received message: {message}")
+        if message:
+            response = get_chatbot_response(message)
+            logging.debug(f"Generated response: {response}")
+            return {'response': response}
+        logging.error("No message received")
+        return {'response': 'No message received'}, 400
+    except Exception as e:
+        logging.error(f"Error processing request: {e}")
+        return {'response': 'Error processing request'}, 500
 
 def get_answer_from_model(question):
     fact_answer = get_fact_answer(question)
@@ -51,9 +71,20 @@ def get_answer_from_model(question):
         return response
 
 def get_chatbot_response(message):
-    # Placeholder implementation
-    return f"Chatbot response to: {message}"
+    return chat_with_gpt2(message)
 
 def chatbot_response(user_input):
-    # Placeholder implementation
-    return f"Chatbot API response to: {user_input}"
+    return chat_with_gpt2(user_input)
+
+def chat_with_gpt2(input_text):
+    # Encode the input text to get token IDs
+    input_ids = tokenizer.encode(input_text, return_tensors='pt')
+
+    # Generate a response from GPT-2
+    with torch.no_grad():
+        output = model.generate(input_ids, max_length=100, num_return_sequences=1, pad_token_id=tokenizer.eos_token_id)
+
+    # Decode the generated tokens to text
+    response = tokenizer.decode(output[0], skip_special_tokens=True)
+    
+    return response
