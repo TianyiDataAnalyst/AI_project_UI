@@ -108,6 +108,48 @@
             background-color: #ddd;
             color: black;
         }
+        .chatbot-container {
+            position: relative; /* Allow it to be in the normal document flow */
+            width: 100%; /* Make the container take up full width of its parent */
+            max-width: 100%; 
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: block; /* Ensure it's always visible */
+            margin-top: 20px; /* Add some space above the chatbot */
+        }
+        .chatbot-header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .chatbot-messages {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+        }
+        .chatbot-input {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+        .chatbot-input textarea {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+            resize: none; /* Prevent resizing */
+        }
+        .chatbot-input button {
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -119,7 +161,7 @@
         </ul>
     </nav>
 
-    <h1>Enable AI in Public Services and Industry Scaling</h1>
+    <h1>Timetrek provides AI consulting services</h1>
     <div class="container">
         <h2 class="text-center">Building a Promised Land</h2>
         <img src="{{ url_for('static', filename='images/Designer.jpeg') }}" 
@@ -127,12 +169,70 @@
             width="666" 
             class="center">
         <p class="text-center">Enabling AI adoption across government and industry sectors through scalable solutions and best practices.</p>
+        <div class="chatbot-container" id="chatbot-inline">
+            <div class="chatbot-header">Chat with us!</div>
+            <div class="chatbot-messages" id="chatbot-messages-inline"></div>
+            <div class="chatbot-input">
+                <textarea id="chatbot-input-inline" placeholder="Type a message..."></textarea>
+                <button onclick="sendMessageInline()">Send</button>
+            </div>
+            <div id="chatbot-error-inline" style="color: red; text-align: center; margin-top: 10px;"></div> <!-- New error message div -->
+        </div>
+        <script>
+            function sendMessageInline() {
+                const input = document.getElementById('chatbot-input-inline');
+                const messages = document.getElementById('chatbot-messages-inline');
+                const errorDiv = document.getElementById('chatbot-error-inline'); // Error message div
+                const message = input.value.trim();
+                if (message) {
+                    const messageElement = document.createElement('div');
+                    messageElement.textContent = message;
+                    messages.appendChild(messageElement);
+                    input.value = '';
+                    messages.scrollTop = messages.scrollHeight;
+
+                    // Clear any previous error messages
+                    errorDiv.textContent = '';
+
+                    // Send message to backend
+                    fetch('/chatbot', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ message: message })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const botMessageElement = document.createElement('div');
+                        botMessageElement.textContent = data.response;
+                        messages.appendChild(botMessageElement);
+                        messages.scrollTop = messages.scrollHeight;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        errorDiv.textContent = 'Failed to send message. Please try again.'; // Display error message
+                    });
+                }
+            }
+
+            document.getElementById('chatbot-input-inline').addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
+                    sendMessageInline();
+                } else if (event.key === 'Enter' && event.shiftKey) {
+                    event.preventDefault();
+                    const input = document.getElementById('chatbot-input-inline');
+                    input.value += '\n';
+                }
+            });
+        </script>
         <div class="link">
             <a href="{{ url_for('enterprise_prebuilt_applications') }}">Learn More About Our Project</a>
         </div>
         <div class="content-wrapper">
                 <ul>
-                    <li>AI-powered automation for government operations</li>
+                    <li>AI-powered automation for business operations</li>
                     <li>Smart cities infrastructure through IoT and AI integration</li>
                     <li>Predictive analytics for resource allocation and management</li>
                     <li>Scalable AI solutions for large-scale industrial operations</li>

@@ -1,0 +1,9 @@
+CREATE TABLE facts (
+  id SERIAL PRIMARY KEY,
+  question TEXT,
+  answer TEXT,
+  user_login_id TEXT,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO facts (question, answer, user_login_id) VALUES ('What is GPT-2?', 'GPT-2 is a large language model created by OpenAI.', 'user123');

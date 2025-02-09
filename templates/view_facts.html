@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Facts</title>
+</head>
+<body>
+    <h1>Stored Facts</h1>
+    <div id="facts-list">
+        <!-- Facts will be dynamically inserted here -->
+    </div>
+    <button id="export-btn">Export to TXT</button>
+
+    <script>
+        async function fetchFacts() {
+            const response = await fetch('/facts');
+            const data = await response.json();
+            const factsList = document.getElementById('facts-list');
+            factsList.innerHTML = data.facts.map(fact => `<p>${fact.question}: ${fact.answer}</p>`).join('');
+        }
+
+        document.getElementById('export-btn').addEventListener('click', async function() {
+            const response = await fetch('/export_facts');
+            const data = await response.blob();
+            const url = window.URL.createObjectURL(data);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'facts.txt';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        });
+
+        fetchFacts();
+    </script>
+</body>
+</html>
