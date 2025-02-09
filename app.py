@@ -5,13 +5,8 @@ import plotly.express as px
 import pandas as pd
 import json
 
-
-# Enable logging
-#logging.basicConfig(level=logging.DEBUG)
-
 # Initialize Flask app
 app = Flask(__name__, template_folder='templates')
-
 
 # Initialize database
 def init_db():
@@ -33,6 +28,10 @@ def project_description():
 @app.route('/algorithmic')
 def algorithmic_trade():
     return render_template('algorithmic_trade.html')
+
+@app.route('/project_description_internal')
+def project_description_internal():
+    return render_template('project_description_internal.html')
 
 @app.route('/')
 def index():
@@ -97,17 +96,12 @@ def reset_votes():
         print(f"Error resetting votes: {e}")
         return "Error resetting votes", 500   
 
-
 @app.route('/enterprise_prebuilt_applications')
 def enterprise_prebuilt_applications():
     return render_template('enterprise_prebuilt_applications.html')
 
 if __name__ == '__main__':
     init_db()
+    from waitress import serve
     # Explicitly bind to all network interfaces
-    app.run(
-        host='0.0.0.0',  # Bind to all interfaces
-        port=5000,
-        debug=True,
-        use_reloader=True
-    )
+    serve(app, host='0.0.0.0', port=5000)

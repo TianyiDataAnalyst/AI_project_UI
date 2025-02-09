@@ -60,6 +60,34 @@
             background-color: #ddd;
             color: black;
         }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 2px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ddd;
+        }
+        .button-link {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 2px solid #333;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .button-link:hover {
+            background-color: #ddd;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +98,7 @@
             <li><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="{{ url_for('enterprise_prebuilt_applications') }}">Services</a></li>
             <li><a href="https://romitgorwani2000.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog" target="_blank">Project Manage</a></li>
+            <li><a href="{{ url_for('project_description_internal') }}">Project Detail</a></li>
         </ul>
     </nav>
 
@@ -85,6 +114,7 @@
 
     <h2>Business Summary</h2>
     <p>This project aims to enhance Pyralume's platform with AI-based language translation and accessibility features, including real-time closed captioning, automated subtitle translation, and multilingual support. These tools will improve accessibility and global reach, aligning with Pyralume's mission of fostering global storytelling.</p>
+    <a href="{{ url_for('project_description_internal') }}" class="button-link">Check Project Detail</a>
 </div>
 
 <p style="text-align: center;">
