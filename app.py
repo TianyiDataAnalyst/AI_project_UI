@@ -14,6 +14,17 @@ load_dotenv()
 # Enable logging
 logging.basicConfig(level=logging.DEBUG)
 
+try:
+    from transformers import GPT2Tokenizer, GPT2LMHeadModel
+    # Specify the cache directory if necessary
+    cache_dir = os.getenv('TRANSFORMERS_CACHE', default=None)
+    # Attempt to load the model and tokenizer
+    GPT2Tokenizer.from_pretrained("gpt2", cache_dir=cache_dir)
+    GPT2LMHeadModel.from_pretrained("gpt2", cache_dir=cache_dir)
+except Exception as e:
+    logging.error("GPT-2 model and tokenizer not found in the local directory. Please run download_model.py to download them.")
+    raise e
+
 # Initialize Flask app
 app = Flask(__name__, template_folder='templates')
 app.secret_key = os.getenv('SECRET_KEY')

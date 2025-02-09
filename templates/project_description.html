@@ -60,33 +60,68 @@
             background-color: #ddd;
             color: black;
         }
+        .password-prompt {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .password-prompt input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .password-prompt button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
     </style>
+    <script>
+        function checkPassword() {
+            var password = document.getElementById('password').value;
+            if (password === '123') {
+                document.getElementById('content').style.display = 'block';
+                document.getElementById('password-prompt').style.display = 'none';
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+        window.onload = function() {
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('password-prompt').style.display = 'block';
+        }
+    </script>
 </head>
 <body>
+    <div id="password-prompt" class="password-prompt">
+        <h2>Please enter the password to view this page</h2>
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+    <div id="content">
+        <!-- Borrowed navigation menu -->
+        <nav class="navbar">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('enterprise_prebuilt_applications') }}">Services</a></li>
+                <li><a href="https://romitgorwani2000.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog" target="_blank">Project Manage</a></li>
+            </ul>
+        </nav>
 
-    <!-- Borrowed navigation menu -->
-    <nav class="navbar">
-        <ul>
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('enterprise_prebuilt_applications') }}">Services</a></li>
-            <li><a href="https://romitgorwani2000.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog" target="_blank">Project Manage</a></li>
-        </ul>
-    </nav>
+        <a href="https://pyralume.com/">
+            <img src="{{ url_for('static', filename='images/pyralume.svg') }}" 
+            alt="AI Enhanced Image" 
+            width="400" 
+            class="center">
+        </a>
 
-<a href="https://pyralume.com/">
-    <img src="{{ url_for('static', filename='images/pyralume.svg') }}" 
-    alt="AI Enhanced Image" 
-    width="400" 
-    class="center">
-</a>
-
-<div class="container">
-    <h1>AI-Driven Language Translation and Accessibility Solutions for Pyralume</h1>
-    <h2>Business Summary</h2>
-    <p>This project aims to develop AI-based language translation features for Pyralume, enhancing accessibility and global reach. The tools will include real-time closed captioning, automated translation of movie subtitles, and multilingual support for text across the platform. These features will make Pyralume’s content accessible to a diverse, international audience, aligning with its mission of fostering global storytelling.</p>
-</div>
-<p style="text-align: center;">
-    <a href="https://pyralume.com/">Visit Pyralume</a>
-</p>
+        <div class="container">
+            <h1>AI-Driven Language Translation and Accessibility Solutions for Pyralume</h1>
+            <h2>Business Summary</h2>
+            <p>This project aims to develop AI-based language translation features for Pyralume, enhancing accessibility and global reach. The tools will include real-time closed captioning, automated translation of movie subtitles, and multilingual support for text across the platform. These features will make Pyralume’s content accessible to a diverse, international audience, aligning with its mission of fostering global storytelling.</p>
+        </div>
+        <p style="text-align: center;">
+            <a href="https://pyralume.com/">Visit Pyralume</a>
+        </p>
+    </div>
 </body>
 </html>
