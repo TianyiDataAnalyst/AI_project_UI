@@ -1,0 +1,7 @@
+build:
+  command: pip install --upgrade pip && pip install -r requirements.txt && gunicorn app:app
+  environment:
+    - PYTHONUNBUFFERED: 1
+    - PIP_NO_CACHE_DIR: off
+    - PIP_DISABLE_PIP_VERSION_CHECK: on
+    - PIP_DEFAULT_TIMEOUT: 100
